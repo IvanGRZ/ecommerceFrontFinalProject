@@ -1,14 +1,14 @@
 import React from 'react'
-import { Button, Grid, Typography, useTheme} from '@mui/material';
-import { useNavigate } from "react-router-dom";
-
+import Header from '../../components/Header/index';
+import ProductList from '../../container/ProductList/index';
 
 const Home = () => {
 
     return ( 
-        <Typography>
-            Hola
-        </Typography>
+        <div>
+            <Header/>
+            <ProductList/>
+        </div>
     );
 }
  
