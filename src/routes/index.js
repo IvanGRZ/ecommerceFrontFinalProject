@@ -2,9 +2,10 @@ import React from 'react';
 import {
     Routes, 
     Route, 
-    Outlet,
-    Navigate
+    Navigate,
+    Outlet
 } from 'react-router-dom'
+import { getToken } from "../utils/storage";
 import Home from '../pages/Home/index';
 import Login from '../pages/Login/index'
 import SignUp from '../pages/SignUp/index'
@@ -12,21 +13,32 @@ import SignUp from '../pages/SignUp/index'
 
 const Routers = () => {
 
-    const PrivateRoute = () => {
-        const auth  = true;
-
+    const PrivateRoute = ({ component: Component, ...rest }) => {
         return (
-            auth ? <Outlet /> : <Navigate to='/login' />
-        )
+          getToken() ? <Outlet {...rest}/> : <Navigate to="/login" />
+        );
     }
+    
+    const PublicRoute = ({ component: Component, ...rest }) => {
+        return ( 
+            getToken() ? <Navigate to="/" /> : <Outlet {...rest}/> 
+        );
+    }
+      
 
     return(
         <Routes>
+
             <Route element={<PrivateRoute />}>
                 <Route path='/' element={<Home/>}/>
+                <Route path='/home' element={<Home/>}/>
+
             </Route>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/signup' element={<SignUp/>} />
+
+            <Route element={<PublicRoute />}>
+                <Route path='/login' element={<Login/>}/>
+                <Route path='/signup' element={<SignUp/>} />
+            </Route>
         </Routes>
     );
 }

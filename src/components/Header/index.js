@@ -10,7 +10,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const Header = () => {
 
     return ( 
-        <Grid container direction="row" justifyContent="flex-start" alignItems="center" className="nav">
+        <Grid container direction="row" justifyContent="flex-start" alignItems="center" className="nav" style={{width: '100%',top: 0,zIndex: 1090}}>
             <Grid item xs={1} sm={1} md={1} lg={2} xl={1}>
                 <img src={Logos.principalLogo} alt="logo" className="nav-logo" />
             </Grid>    
@@ -18,7 +18,7 @@ const Header = () => {
             <Grid item xs={10} sm={10} md={10} lg={8.8} xl={10} className="navbar-left">
                 <ul>
                     <li>
-                        <a href="/">All</a>
+                        <a href="/">Todos los Productos</a>
                     </li>
                 </ul>
             </Grid>
